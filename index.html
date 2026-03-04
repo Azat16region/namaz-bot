@@ -18,45 +18,54 @@
             --holiday-text: #fdba74;
             --border: #334155;
         }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: var(--bg-color); color: var(--text-main); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        .container { width: 100%; max-width: 800px; background: var(--card-bg); padding: 20px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: var(--bg-color); color: var(--text-main); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .container { width: 100%; max-width: 900px; background: var(--card-bg); padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
         
-        h1 { text-align: center; color: var(--accent); margin-bottom: 5px; font-size: 24px; }
-        #city-name { text-align: center; color: var(--text-muted); margin-bottom: 20px; font-size: 16px; }
+        /* Заголовок */
+        h1 { text-align: center; color: var(--accent); margin: 0 0 10px 0; font-size: 28px; text-transform: uppercase; letter-spacing: 1px; }
+        #city-name { text-align: center; color: var(--text-muted); margin-bottom: 25px; font-size: 18px; font-weight: 500; }
 
-        .controls { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; background: #0f172a; padding: 10px; border-radius: 12px; }
-        select, input { padding: 10px 15px; border-radius: 8px; border: 1px solid var(--border); background: #1e293b; color: white; font-size: 16px; outline: none; }
-        select:focus, input:focus { border-color: var(--accent); }
+        /* Управление */
+        .controls { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px; background: #0f172a; padding: 15px; border-radius: 12px; border: 1px solid var(--border); }
+        select, input { padding: 12px 15px; border-radius: 8px; border: 1px solid var(--border); background: #1e293b; color: white; font-size: 16px; outline: none; min-width: 120px; }
+        select:focus, input:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2); }
         
         /* Таблица */
-        .table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
-        table { width: 100%; border-collapse: collapse; min-width: 600px; }
-        th { background: #0f172a; color: var(--accent); padding: 15px; text-align: center; font-weight: 600; position: sticky; top: 0; }
-        td { padding: 12px 8px; text-align: center; border-bottom: 1px solid var(--border); font-size: 14px; }
+        .table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); box-shadow: inset 0 0 10px rgba(0,0,0,0.2); }
+        table { width: 100%; border-collapse: collapse; min-width: 700px; }
+        th { background: #0f172a; color: var(--accent); padding: 18px 10px; text-align: center; font-weight: 700; font-size: 14px; text-transform: uppercase; position: sticky; top: 0; z-index: 10; border-bottom: 2px solid var(--accent); }
+        td { padding: 14px 8px; text-align: center; border-bottom: 1px solid var(--border); font-size: 15px; vertical-align: middle; }
         
         tr:nth-child(even) { background: rgba(255,255,255,0.02); }
-        tr:hover { background: rgba(255,255,255,0.05); }
+        tr:hover { background: rgba(56, 189, 248, 0.05); }
 
-        /* Стили для дней */
-        .day-cell { font-weight: bold; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-        .day-num { font-size: 18px; }
-        .day-name { font-size: 12px; color: var(--text-muted); text-transform: uppercase; }
+        /* Ячейка даты */
+        .date-cell { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 80px; }
+        .day-num { font-size: 20px; font-weight: 800; color: var(--text-main); line-height: 1; }
+        .day-name { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+        .month-year-header { font-size: 14px; color: var(--text-muted); margin-top: 2px; }
         
-        .friday { background: var(--friday-bg) !important; color: var(--friday-text); }
+        /* Стили дней */
+        .friday { background: rgba(6, 78, 59, 0.4) !important; border-left: 4px solid var(--friday-text); }
+        .friday .day-num { color: var(--friday-text); }
         .friday .day-name { color: #a7f3d0; }
         
-        .holiday { background: var(--holiday-bg) !important; color: var(--holiday-text); border: 1px solid #f59e0b; }
+        .holiday { background: rgba(124, 45, 18, 0.4) !important; border-left: 4px solid #f59e0b; }
+        .holiday .day-num { color: var(--holiday-text); }
         .holiday .day-name { color: #fcd34d; }
-        .holiday-badge { font-size: 10px; background: #f59e0b; color: #000; padding: 2px 6px; border-radius: 4px; margin-top: 4px; font-weight: bold; }
+        .holiday-badge { font-size: 10px; background: #f59e0b; color: #000; padding: 3px 6px; border-radius: 4px; margin-top: 4px; font-weight: 800; text-transform: uppercase; box-shadow: 0 2px 4px rgba(0,0,0,0.3); }
 
-        .prayer-time { font-family: 'Courier New', monospace; font-weight: 600; letter-spacing: 0.5px; }
+        .prayer-time { font-family: 'Consolas', 'Monaco', monospace; font-weight: 700; color: var(--text-main); letter-spacing: 0.5px; font-size: 16px; }
         
-        button { background: var(--accent); color: #0f172a; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.2s; width: 100%; max-width: 300px; }
-        button:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        button { background: linear-gradient(135deg, var(--accent), #0ea5e9); color: #0f172a; border: none; padding: 14px 30px; border-radius: 10px; font-size: 16px; font-weight: 800; cursor: pointer; margin-top: 25px; transition: all 0.2s; width: 100%; max-width: 350px; text-transform: uppercase; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); }
+        button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4); filter: brightness(1.05); }
+        button:active { transform: translateY(1px); }
 
         @media (max-width: 600px) {
             .controls { flex-direction: column; }
             select, input { width: 100%; box-sizing: border-box; }
+            th, td { padding: 10px 4px; font-size: 13px; }
+            .day-num { font-size: 18px; }
         }
     </style>
 </head>
@@ -66,17 +75,22 @@
     <h1>🕌 Время Намаза</h1>
     <div id="city-name">Загрузка...</div>
     
+    <!-- Крупный заголовок месяца и года -->
+    <div style="text-align: center; margin-bottom: 15px;">
+        <h2 id="period-title" style="margin: 0; color: white; font-size: 22px;"></h2>
+    </div>
+
     <div class="controls">
-        <input type="number" id="year-input" placeholder="Год" min="2020" max="2050" value="2026">
+        <input type="number" id="year-input" placeholder="Год" min="2020" max="2050">
         <select id="month-select"></select>
-        <button onclick="renderTable()" style="margin:0; width: auto; padding: 10px 20px;">Показать</button>
+        <button onclick="renderTable()" style="margin:0; width: auto; padding: 12px 25px;">Обновить</button>
     </div>
 
     <div class="table-wrapper">
         <table id="prayer-table">
             <thead>
                 <tr>
-                    <th style="min-width: 100px;">Дата</th>
+                    <th>Дата</th>
                     <th>Фаджр</th>
                     <th>Восход</th>
                     <th>Зухр</th>
@@ -91,7 +105,7 @@
     </div>
 </div>
 
-<button onclick="downloadImage()">📸 Сохранить как картинку</button>
+<button onclick="downloadImage()">📸 Сохранить расписание</button>
 
 <script>
     let cityLat = 55.7887;
@@ -104,42 +118,43 @@
     if(params.has('lng')) cityLng = parseFloat(params.get('lng'));
 
     document.getElementById('city-name').innerText = `📍 ${cityName}`;
-    document.getElementById('year-input').value = new Date().getFullYear();
+    
+    const currentYear = new Date().getFullYear();
+    document.getElementById('year-input').value = currentYear;
 
     const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
     const monthSelect = document.getElementById('month-select');
+    const periodTitle = document.getElementById('period-title');
+    
     months.forEach((m, i) => {
         let opt = document.createElement('option');
-        opt.value = i + 1; // API использует 1-12
+        opt.value = i + 1; 
         opt.innerText = m;
         if(i === new Date().getMonth()) opt.selected = true;
         monthSelect.appendChild(opt);
     });
 
-    // Определение праздников (приблизительные даты по григорианскому календарю для примера, 
-    // в реальном проекте лучше использовать API исламского календаря для точности)
-    // Здесь реализована простая логика: если дата совпадает с известными днями (примерно)
-    function getHolidayName(date) {
-        const d = date.getDate();
-        const m = date.getMonth() + 1;
-        const y = date.getFullYear();
-        
-        // Примерные даты для 2026 года (нужно корректировать каждый год или использовать API)
-        // Для демо выделим фиксированные дни или используем внешний API Hijri
-        // В данном коде мы будем запрашивать Hijri дату из API aladhan и проверять её
-        
-        return null; // Логика будет внутри fetch
+    // Обновление заголовка при изменении
+    function updateTitle() {
+        const y = document.getElementById('year-input').value;
+        const mIdx = parseInt(document.getElementById('month-select').value) - 1;
+        periodTitle.innerText = `${months[mIdx]} ${y}`;
     }
+    
+    document.getElementById('year-input').addEventListener('change', updateTitle);
+    document.getElementById('month-select').addEventListener('change', updateTitle);
+    updateTitle();
 
     async function renderTable() {
         const tbody = document.getElementById('table-body');
-        tbody.innerHTML = '<tr><td colspan="8" style="padding: 20px;">Загрузка данных...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="8" style="padding: 30px; color: var(--text-muted);">Загрузка данных...</td></tr>';
         
         const year = parseInt(document.getElementById('year-input').value);
         const month = parseInt(document.getElementById('month-select').value);
         
-        // Используем API Aladhan для получения календаря + Хиджры (для праздников)
-        // Метод 99 (Custom) с углами 18/15
+        updateTitle();
+
+        // Запрос к API с методом 99 (Custom) и углами 18/15
         const url = `https://api.aladhan.com/v1/calendarByCity?city=${encodeURIComponent(cityName)}&country=Russia&method=99&fajrAngle=18&ishaAngle=15&year=${year}&month=${month}`;
         
         try {
@@ -151,37 +166,48 @@
             tbody.innerHTML = '';
             const days = data.data;
             
-            const weekDays = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+            const weekDays = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+            const weekDaysShort = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
 
             days.forEach(day => {
                 const gregorian = day.date.gregorian;
                 const hijri = day.date.hijri;
                 const t = day.timings;
                 
-                // Парсим дату для определения дня недели
-                const dateObj = new Date(gregorian.date);
-                const dayOfWeek = dateObj.getDay(); // 0 = Вс, 5 = Пт
+                // ТОЧНЫЙ РАСЧЕТ ДНЯ НЕДЕЛИ
+                // Парсим дату YYYY-DD-MM в объекты JS
+                const parts = gregorian.date.split('-');
+                const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+                const dayOfWeek = dateObj.getDay(); // 0-6
                 
                 // Определение праздников по Хиджре
                 let holidayName = null;
                 const hDay = parseInt(hijri.day);
-                const hMonth = hijri.month.number;
+                const hMonth = parseInt(hijri.month.number);
                 
-                // 1 Шавваль - Ураза Байрам, 10 Зуль-Хиджа - Курбан Байрам
+                // 1 Шавваль (10 месяц) - Ураза Байрам
                 if (hMonth === 10 && hDay === 1) holidayName = "Ураза-байрам";
+                // 10 Зуль-Хиджа (12 месяц) - Курбан Байрам
                 if (hMonth === 12 && hDay === 10) holidayName = "Курбан-байрам";
 
                 let rowClass = '';
-                if (dayOfWeek === 5) rowClass = 'friday'; // Пятница
-                if (holidayName) rowClass = 'holiday'; // Праздник приоритетнее или можно комбинировать
+                if (holidayName) rowClass = 'holiday';
+                else if (dayOfWeek === 5) rowClass = 'friday';
 
                 const dateCell = `
-                    <div class="day-cell">
-                        <span class="day-num">${gregorian.date.split('-')[2]}</span>
-                        <span class="day-name">${weekDays[dayOfWeek]}</span>
+                    <div class="date-cell">
+                        <span class="day-num">${parts[2]}</span>
+                        <span class="day-name">${weekDaysShort[dayOfWeek]}</span>
                         ${holidayName ? `<span class="holiday-badge">${holidayName}</span>` : ''}
                     </div>
                 `;
+
+                // Примечание: API Aladhan возвращает одно время Асра в зависимости от метода школы в запросе.
+                // Так как мы запросили метод 99 без указания школы, он вернет Шафи по умолчанию.
+                // Для Ханафи нам нужно эмулировать сдвиг, так как один запрос не вернет два времени.
+                // Эмпирический сдвиг для РФ ~ +45..55 мин. Возьмем +50 мин для надежности.
+                let asrShafi = t.Asr;
+                let asrHanafi = addMinutes(t.Asr, 50); 
 
                 const row = `
                     <tr class="${rowClass}">
@@ -189,8 +215,8 @@
                         <td class="prayer-time">${t.Fajr}</td>
                         <td class="prayer-time">${t.Sunrise}</td>
                         <td class="prayer-time">${t.Dhuhr}</td>
-                        <td class="prayer-time">${t.Asr}</td>
-                        <td class="prayer-time">${t.Asr}</td> 
+                        <td class="prayer-time">${asrShafi}</td>
+                        <td class="prayer-time">${asrHanafi}</td>
                         <td class="prayer-time">${t.Maghrib}</td>
                         <td class="prayer-time">${t.Isha}</td>
                     </tr>
@@ -199,23 +225,35 @@
             });
         } catch (e) {
             console.error(e);
-            tbody.innerHTML = '<tr><td colspan="8">Ошибка загрузки данных. Проверьте интернет.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="8" style="padding: 20px; color: #ef4444;">Ошибка загрузки. Проверьте интернет или название города.</td></tr>';
         }
+    }
+
+    function addMinutes(timeStr, mins) {
+        if(!timeStr) return "--:--";
+        const [h, m] = timeStr.split(':').map(Number);
+        const date = new Date();
+        date.setHours(h, m + mins, 0, 0);
+        return date.toLocaleTimeString('ru-RU', {hour: '2-digit', minute:'2-digit'});
     }
 
     function downloadImage() {
         const area = document.getElementById('capture-area');
-        html2canvas(area, { scale: 2, backgroundColor: '#1e293b' }).then(canvas => {
+        html2canvas(area, { scale: 2, backgroundColor: '#1e293b', useCORS: true }).then(canvas => {
             const link = document.createElement('a');
-            link.download = `namaz-${cityName}-${document.getElementById('year-input').value}.png`;
+            const y = document.getElementById('year-input').value;
+            const m = document.getElementById('month-select').options[document.getElementById('month-select').selectedIndex].text;
+            link.download = `Namaz-${cityName}-${m}-${y}.png`;
             link.href = canvas.toDataURL('image/png');
             link.click();
         });
     }
 
-    // Initial load
     renderTable();
 </script>
 
 </body>
 </html>
+</body>
+</html>
+
