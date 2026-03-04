@@ -18,18 +18,17 @@
             --holiday-text: #fdba74;
             --border: #334155;
         }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: var(--bg-color); color: var(--text-main); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background: var(--bg-color); color: var(--text-main); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
         .container { width: 100%; max-width: 900px; background: var(--card-bg); padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
         
-        h1 { text-align: center; color: var(--accent); margin: 0 0 5px 0; font-size: 28px; text-transform: uppercase; letter-spacing: 1px; }
-        #city-name { text-align: center; color: var(--text-muted); margin-bottom: 10px; font-size: 18px; font-weight: 500; }
+        h1 { text-align: center; color: var(--accent); margin: 0 0 5px 0; font-size: 28px; text-transform: uppercase; }
+        #city-name { text-align: center; color: var(--text-muted); margin-bottom: 10px; font-size: 18px; }
 
-        /* Крупный заголовок периода */
         .period-header { text-align: center; margin-bottom: 20px; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 10px; }
         .period-header h2 { margin: 0; color: #fff; font-size: 24px; }
 
         .controls { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px; background: #0f172a; padding: 15px; border-radius: 12px; border: 1px solid var(--border); }
-        select, input { padding: 12px 15px; border-radius: 8px; border: 1px solid var(--border); background: #1e293b; color: white; font-size: 16px; outline: none; min-width: 120px; }
+        select, input { padding: 12px 15px; border-radius: 8px; border: 1px solid var(--border); background: #1e293b; color: white; font-size: 16px; outline: none; }
         
         .table-wrapper { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
         table { width: 100%; border-collapse: collapse; min-width: 700px; }
@@ -37,31 +36,27 @@
         td { padding: 14px 8px; text-align: center; border-bottom: 1px solid var(--border); font-size: 15px; vertical-align: middle; }
         
         tr:nth-child(even) { background: rgba(255,255,255,0.02); }
-        tr:hover { background: rgba(56, 189, 248, 0.05); }
-
-        /* Ячейка даты: ТОЛЬКО ЧИСЛО И ДЕНЬ */
-        .date-cell { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-width: 70px; }
-        .day-num { font-size: 22px; font-weight: 800; color: var(--text-main); line-height: 1; }
+        
+        /* Ячейка даты */
+        .date-cell { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .day-num { font-size: 22px; font-weight: 800; color: var(--text-main); }
         .day-name { font-size: 13px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
         
-        .friday { background: rgba(6, 78, 59, 0.4) !important; border-left: 4px solid var(--friday-text); }
+        .friday { background: rgba(6, 78, 59, 0.3) !important; border-left: 4px solid var(--friday-text); }
         .friday .day-num { color: var(--friday-text); }
-        .friday .day-name { color: #a7f3d0; }
         
-        .holiday { background: rgba(124, 45, 18, 0.4) !important; border-left: 4px solid #f59e0b; }
+        .holiday { background: rgba(124, 45, 18, 0.3) !important; border-left: 4px solid #f59e0b; }
         .holiday .day-num { color: var(--holiday-text); }
-        .holiday .day-name { color: #fcd34d; }
-        .holiday-badge { font-size: 10px; background: #f59e0b; color: #000; padding: 3px 6px; border-radius: 4px; margin-top: 4px; font-weight: 800; text-transform: uppercase; }
+        .holiday-badge { font-size: 10px; background: #f59e0b; color: #000; padding: 2px 6px; border-radius: 4px; font-weight: 800; margin-top: 4px; }
 
-        .prayer-time { font-family: 'Consolas', 'Monaco', monospace; font-weight: 700; color: var(--text-main); letter-spacing: 0.5px; font-size: 16px; }
+        .prayer-time { font-family: 'Consolas', monospace; font-weight: 700; color: var(--text-main); font-size: 16px; }
         
-        button { background: linear-gradient(135deg, var(--accent), #0ea5e9); color: #0f172a; border: none; padding: 14px 30px; border-radius: 10px; font-size: 16px; font-weight: 800; cursor: pointer; margin-top: 25px; transition: all 0.2s; width: 100%; max-width: 350px; text-transform: uppercase; }
-        button:hover { transform: translateY(-2px); filter: brightness(1.05); }
+        button { background: linear-gradient(135deg, var(--accent), #0ea5e9); color: #0f172a; border: none; padding: 14px 30px; border-radius: 10px; font-size: 16px; font-weight: 800; cursor: pointer; margin-top: 25px; width: 100%; max-width: 350px; text-transform: uppercase; }
+        button:hover { filter: brightness(1.1); }
 
         @media (max-width: 600px) {
             .controls { flex-direction: column; }
             select, input { width: 100%; box-sizing: border-box; }
-            .day-num { font-size: 18px; }
         }
     </style>
 </head>
@@ -71,7 +66,6 @@
     <h1>🕌 Время Намаза</h1>
     <div id="city-name">Загрузка...</div>
     
-    <!-- Заголовок с Месяцем и Годом -->
     <div class="period-header">
         <h2 id="period-title">Месяц Год</h2>
     </div>
@@ -114,9 +108,7 @@
     if(params.has('lng')) cityLng = parseFloat(params.get('lng'));
 
     document.getElementById('city-name').innerText = `📍 ${cityName}`;
-    
-    const currentYear = new Date().getFullYear();
-    document.getElementById('year-input').value = currentYear;
+    document.getElementById('year-input').value = new Date().getFullYear();
 
     const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
     const monthSelect = document.getElementById('month-select');
@@ -140,15 +132,28 @@
     document.getElementById('month-select').addEventListener('change', updateTitle);
     updateTitle();
 
+    // Функция добавления минут (для Ханафи)
+    function addMinutes(timeStr, mins) {
+        if(!timeStr || timeStr === '--:--') return "--:--";
+        const parts = timeStr.split(':');
+        let h = parseInt(parts[0]);
+        let m = parseInt(parts[1]);
+        m += mins;
+        while(m >= 60) { m -= 60; h++; }
+        while(h >= 24) { h -= 24; }
+        return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+    }
+
     async function renderTable() {
         const tbody = document.getElementById('table-body');
-        tbody.innerHTML = '<tr><td colspan="8" style="padding: 30px;">Загрузка...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="8" style="padding: 30px;">Загрузка данных...</td></tr>';
         
         const year = parseInt(document.getElementById('year-input').value);
         const month = parseInt(document.getElementById('month-select').value);
         
         updateTitle();
 
+        // Запрос к API
         const url = `https://api.aladhan.com/v1/calendarByCity?city=${encodeURIComponent(cityName)}&country=Russia&method=99&fajrAngle=18&ishaAngle=15&year=${year}&month=${month}`;
         
         try {
@@ -159,7 +164,6 @@
             
             tbody.innerHTML = '';
             const days = data.data;
-            
             const weekDaysShort = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
 
             days.forEach(day => {
@@ -167,33 +171,37 @@
                 const hijri = day.date.hijri;
                 const t = day.timings;
                 
-                // Точный расчет дня недели
-                const parts = gregorian.date.split('-');
-                const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+                // Ручной парсинг даты YYYY-DD-MM для гарантии
+                const dateParts = gregorian.date.split('-');
+                const dYear = parseInt(dateParts[0]);
+                const dMonth = parseInt(dateParts[1]) - 1; // JS месяцы с 0
+                const dDay = parseInt(dateParts[2]);
+                
+                const dateObj = new Date(dYear, dMonth, dDay);
                 const dayOfWeek = dateObj.getDay(); 
                 
                 let holidayName = null;
                 const hDay = parseInt(hijri.day);
-                const hMonth = parseInt(hijri.month.number);
+                const hMonthNum = parseInt(hijri.month.number);
                 
-                if (hMonth === 10 && hDay === 1) holidayName = "Ураза-байрам";
-                if (hMonth === 12 && hDay === 10) holidayName = "Курбан-байрам";
+                if (hMonthNum === 10 && hDay === 1) holidayName = "Ураза-байрам";
+                if (hMonthNum === 12 && hDay === 10) holidayName = "Курбан-байрам";
 
                 let rowClass = '';
                 if (holidayName) rowClass = 'holiday';
                 else if (dayOfWeek === 5) rowClass = 'friday';
 
-                // ФОРМАТ ЯЧЕЙКИ: Только число и день недели
                 const dateCell = `
                     <div class="date-cell">
-                        <span class="day-num">${parts[2]}</span>
+                        <span class="day-num">${dDay}</span>
                         <span class="day-name">${weekDaysShort[dayOfWeek]}</span>
                         ${holidayName ? `<span class="holiday-badge">${holidayName}</span>` : ''}
                     </div>
                 `;
 
-                let asrShafi = t.Asr;
-                let asrHanafi = addMinutes(t.Asr, 50); 
+                // Расчет Асра Ханафи (+50 мин к Шафи)
+                const asrShafi = t.Asr;
+                const asrHanafi = addMinutes(t.Asr, 50);
 
                 const row = `
                     <tr class="${rowClass}">
@@ -210,16 +218,9 @@
                 tbody.innerHTML += row;
             });
         } catch (e) {
-            tbody.innerHTML = '<tr><td colspan="8" style="padding: 20px; color: #ef4444;">Ошибка загрузки.</td></tr>';
+            console.error(e);
+            tbody.innerHTML = '<tr><td colspan="8" style="padding: 20px; color: #ef4444;">Ошибка загрузки данных. Проверьте интернет.</td></tr>';
         }
-    }
-
-    function addMinutes(timeStr, mins) {
-        if(!timeStr) return "--:--";
-        const [h, m] = timeStr.split(':').map(Number);
-        const date = new Date();
-        date.setHours(h, m + mins, 0, 0);
-        return date.toLocaleTimeString('ru-RU', {hour: '2-digit', minute:'2-digit'});
     }
 
     function downloadImage() {
