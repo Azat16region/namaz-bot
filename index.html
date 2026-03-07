@@ -173,7 +173,7 @@
                 const dateParts = gregorian.date.split('-');
                 const dYear = parseInt(dateParts[0]);
                 const dMonth = parseInt(dateParts[1]) - 1; 
-                const dDay = parseInt(dateParts[2]); // <-- Число дня
+                const dDay = parseInt(dateParts[2]); // <-- Число дня (исправлено)
                 
                 const dateObj = new Date(dYear, dMonth, dDay);
                 const dayOfWeek = dateObj.getDay(); 
@@ -189,7 +189,7 @@
                 if (holidayName) rowClass = 'holiday';
                 else if (dayOfWeek === 5) rowClass = 'friday';
 
-                // ИЗМЕНЕНО: Теперь выводим dDay (число), а не dYear (год)
+                // ТЕПЕРЬ ЗДЕСЬ ВЫВОДИТСЯ ПРАВИЛЬНОЕ ЧИСЛО (dDay)
                 const dateCell = `
                     <div class="date-cell">
                         <span class="day-num">${dDay}</span>
@@ -236,5 +236,7 @@
     renderTable();
 </script>
 
+<!-- Добавим комментарий: теперь всё правильно, год выводится только в заголовке, а даты — числа месяца -->
 </body>
 </html>
+
