@@ -25,7 +25,7 @@
         #city-name { text-align: center; color: var(--text-muted); margin-bottom: 10px; font-size: 18px; }
 
         .period-header { text-align: center; margin-bottom: 20px; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 10px; }
-        .period-header h2 { margin: 0; color: #fff; font-size: 24px; }
+        .period-header h2 { margin: 0; color: #fff; font-size: 28px; font-weight: 700; letter-spacing: 1px; }
 
         .controls { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px; background: #0f172a; padding: 15px; border-radius: 12px; border: 1px solid var(--border); }
         select, input { padding: 12px 15px; border-radius: 8px; border: 1px solid var(--border); background: #1e293b; color: white; font-size: 16px; outline: none; }
@@ -39,7 +39,7 @@
         
         /* Ячейка даты */
         .date-cell { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-        .day-num { font-size: 22px; font-weight: 800; color: var(--text-main); }
+        .day-num { font-size: 24px; font-weight: 800; color: var(--text-main); line-height: 1.2; }
         .day-name { font-size: 13px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
         
         .friday { background: rgba(6, 78, 59, 0.3) !important; border-left: 4px solid var(--friday-text); }
@@ -71,7 +71,7 @@
     </div>
 
     <div class="controls">
-        <input type="number" id="year-input" placeholder="Год" min="2020" max="2050">
+        <input type="number" id="year-input" placeholder="Год" min="2020" max="2050" value="2026">
         <select id="month-select"></select>
         <button onclick="renderTable()" style="margin:0; width: auto; padding: 12px 25px;">Обновить</button>
     </div>
@@ -169,11 +169,11 @@
                 const hijri = day.date.hijri;
                 const t = day.timings;
                 
-                // Ручной парсинг даты YYYY-DD-MM
+                // ИСПРАВЛЕНО: API возвращает дату в формате "DD-MM-YYYY"
                 const dateParts = gregorian.date.split('-');
-                const dYear = parseInt(dateParts[0]);
-                const dMonth = parseInt(dateParts[1]) - 1; 
-                const dDay = parseInt(dateParts[2]); // <-- Число дня (исправлено)
+                const dDay = parseInt(dateParts[0]); // День (01, 02...)
+                const dMonth = parseInt(dateParts[1]) - 1; // Месяц (01-12)
+                const dYear = parseInt(dateParts[2]); // Год
                 
                 const dateObj = new Date(dYear, dMonth, dDay);
                 const dayOfWeek = dateObj.getDay(); 
@@ -189,7 +189,7 @@
                 if (holidayName) rowClass = 'holiday';
                 else if (dayOfWeek === 5) rowClass = 'friday';
 
-                // ТЕПЕРЬ ЗДЕСЬ ВЫВОДИТСЯ ПРАВИЛЬНОЕ ЧИСЛО (dDay)
+                // ИСПРАВЛЕНО: теперь выводится число месяца (dDay)
                 const dateCell = `
                     <div class="date-cell">
                         <span class="day-num">${dDay}</span>
@@ -236,7 +236,6 @@
     renderTable();
 </script>
 
-<!-- Добавим комментарий: теперь всё правильно, год выводится только в заголовке, а даты — числа месяца -->
 </body>
 </html>
 
