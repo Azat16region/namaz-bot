@@ -132,7 +132,6 @@
     document.getElementById('month-select').addEventListener('change', updateTitle);
     updateTitle();
 
-    // Функция добавления минут (для Ханафи)
     function addMinutes(timeStr, mins) {
         if(!timeStr || timeStr === '--:--') return "--:--";
         const parts = timeStr.split(':');
@@ -153,7 +152,6 @@
         
         updateTitle();
 
-        // Запрос к API
         const url = `https://api.aladhan.com/v1/calendarByCity?city=${encodeURIComponent(cityName)}&country=Russia&method=99&fajrAngle=18&ishaAngle=15&year=${year}&month=${month}`;
         
         try {
@@ -171,11 +169,11 @@
                 const hijri = day.date.hijri;
                 const t = day.timings;
                 
-                // Ручной парсинг даты YYYY-DD-MM для гарантии
+                // Ручной парсинг даты YYYY-DD-MM
                 const dateParts = gregorian.date.split('-');
                 const dYear = parseInt(dateParts[0]);
-                const dMonth = parseInt(dateParts[1]) - 1; // JS месяцы с 0
-                const dDay = parseInt(dateParts[2]);
+                const dMonth = parseInt(dateParts[1]) - 1; 
+                const dDay = parseInt(dateParts[2]); // <-- Число дня
                 
                 const dateObj = new Date(dYear, dMonth, dDay);
                 const dayOfWeek = dateObj.getDay(); 
@@ -191,6 +189,7 @@
                 if (holidayName) rowClass = 'holiday';
                 else if (dayOfWeek === 5) rowClass = 'friday';
 
+                // ИЗМЕНЕНО: Теперь выводим dDay (число), а не dYear (год)
                 const dateCell = `
                     <div class="date-cell">
                         <span class="day-num">${dDay}</span>
@@ -199,7 +198,6 @@
                     </div>
                 `;
 
-                // Расчет Асра Ханафи (+50 мин к Шафи)
                 const asrShafi = t.Asr;
                 const asrHanafi = addMinutes(t.Asr, 50);
 
@@ -219,7 +217,7 @@
             });
         } catch (e) {
             console.error(e);
-            tbody.innerHTML = '<tr><td colspan="8" style="padding: 20px; color: #ef4444;">Ошибка загрузки данных. Проверьте интернет.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="8" style="padding: 20px; color: #ef4444;">Ошибка загрузки данных.</td></tr>';
         }
     }
 
@@ -240,4 +238,3 @@
 
 </body>
 </html>
-
